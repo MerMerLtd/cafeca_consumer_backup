@@ -21,7 +21,7 @@ class GiftCardFront extends StatelessWidget {
           fit: BoxFit.cover,
         ),
         footer: Transform.scale(
-          scale: 1,
+          scale: 1.5,
           child: GridTileBar(
             backgroundColor: Colors.white54,
             title: Text(

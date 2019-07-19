@@ -15,10 +15,13 @@ class CardSwiper extends StatelessWidget {
       itemCount: giftCards.length,
       itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
             value: giftCards[i],
-            child: GiftCardItem(),
+            child: Transform.scale(
+              child: GiftCardItem(),
+              scale: 0.7,
+            ),
           ),
-      itemWidth: _size.width * 0.7,
-      itemHeight: _size.height * 0.55,
+      itemWidth: _size.width, //* 0.7,
+      itemHeight: _size.height * 0.9, // * 0.55,
       layout: SwiperLayout.STACK,
       scrollDirection: Axis.vertical,
     );

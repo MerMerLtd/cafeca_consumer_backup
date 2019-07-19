@@ -29,19 +29,19 @@ class _GiftCardItemState extends State<GiftCardItem> {
       front: SwipeDetector(
         onSwipeLeft: () {
           cardKey.currentState.toggleCard();
-          void handleTimeout() {
-            Navigator.push(
-              context,
-              ScaleRoute(
-                child: CardDetailScreen(id: giftCard.id),
-              ),
-            );
-          }
-          Timer(Duration(milliseconds: 500), handleTimeout);
-          Timer(
-            Duration(milliseconds: 500),
-            () => cardKey.currentState.toggleCard(),
-          );
+          // void handleTimeout() {
+          //   Navigator.push(
+          //     context,
+          //     ScaleRoute(
+          //       child: CardDetailScreen(id: giftCard.id),
+          //     ),
+          //   );
+          // }
+          // Timer(Duration(milliseconds: 500), handleTimeout);
+          // Timer(
+          //   Duration(milliseconds: 500),
+          //   () => cardKey.currentState.toggleCard(),
+          // );
         },
         // onSwipeRight: () => cardKey.currentState.toggleCard(),
         child: GiftCardFront(giftCard: giftCard),
@@ -51,7 +51,10 @@ class _GiftCardItemState extends State<GiftCardItem> {
         onSwipeRight: () => cardKey.currentState.toggleCard(),
         child: Transform.scale(
           scale: 1,
-          child: GiftCardBack(giftCard: giftCard),
+          child: Transform.scale(
+            scale: 1.43,
+            child: GiftCardBack(giftCard: giftCard),
+          ),
         ),
       ),
     );
