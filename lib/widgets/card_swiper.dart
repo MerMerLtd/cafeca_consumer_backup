@@ -5,6 +5,10 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import '../prodivers/gift_cards.dart';
 import './gift_card_item.dart';
 
+// to fix gesture conflict
+// https://flutter.dev/docs/development/ui/advanced/gestures#gesture-disambiguation
+// https://www.davidanaya.io/flutter/combine-multiple-gestures.html
+
 class CardSwiper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
