@@ -62,7 +62,7 @@ class GiftCardBack extends StatelessWidget {
             Spacer(),
             ConstrainedBox(
                 constraints:
-                    BoxConstraints(maxHeight: _deviceData.size.height) * 0.15,
+                    BoxConstraints(maxHeight: _deviceData.size.height) * 0.25,
                 child: Stack(
                   fit: StackFit.expand,
                   children: <Widget>[

@@ -25,7 +25,7 @@ class CardSwiper extends StatelessWidget {
             ),
           ),
       itemWidth: _size.width, //* 0.7,
-      itemHeight: _size.height * 0.9, // * 0.55,
+      itemHeight: _size.height * 0.88, // * 0.55,
       layout: SwiperLayout.STACK,
       scrollDirection: Axis.vertical,
     );

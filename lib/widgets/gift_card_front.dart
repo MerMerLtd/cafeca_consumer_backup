@@ -12,8 +12,7 @@ class GiftCardFront extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-     ClipRRect(
+    return ClipRRect(
       borderRadius: BorderRadius.circular(15),
       child: GridTile(
         child: Image.network(
@@ -23,11 +22,14 @@ class GiftCardFront extends StatelessWidget {
         footer: Transform.scale(
           scale: 1.5,
           child: GridTileBar(
-            backgroundColor: Colors.white54,
+            backgroundColor: Colors.white70,
             title: Text(
               giftCard.title,
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.grey),
+              style: TextStyle(
+                color: Colors.blueGrey,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
