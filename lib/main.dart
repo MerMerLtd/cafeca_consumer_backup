@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:page_transition/page_transition.dart';
 
 import './screens/cards_overview_screen.dart';
 import './screens/card_detail_screen.dart';
@@ -23,6 +24,18 @@ class CafecaConsumer extends StatelessWidget {
         routes: {
           CardDetailScreen.routeName: (ctx) => CardDetailScreen(),
         },
+        // onGenerateRoute: (settings) {
+        //   switch (settings.name) {
+        //     case '/second':
+        //       return PageTransition(
+        //         child: CardDetailScreen(),
+        //         type: PageTransitionType.scale,
+        //       );
+        //       break;
+        //     default:
+        //       return null;
+        //   }
+        // },
       ),
     );
   }

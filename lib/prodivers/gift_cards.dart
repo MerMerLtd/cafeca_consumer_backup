@@ -50,12 +50,12 @@ class GiftCards with ChangeNotifier {
     return [..._items];
   }
 
-  List<GiftCard> get usedCard{
-    return _items.where((card) => card.isUsed).toList();
+  List<GiftCard> get usedItems{
+    return _items.where((item) => item.isUsed).toList();
   }
 
   GiftCard findById(String id){
-    return _items.firstWhere((card) => card.id == id);
+    return _items.firstWhere((item) => item.id == id);
   }
 
   void updateCards(){

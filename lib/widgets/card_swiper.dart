@@ -11,15 +11,14 @@ class CardSwiper extends StatelessWidget {
     final _size = MediaQuery.of(context).size;
     final giftCardsData = Provider.of<GiftCards>(context);
     final giftCards = giftCardsData.items;
-
     return Swiper(
       itemCount: giftCards.length,
-      itemBuilder: (ctx, i) => ChangeNotifierProvider(
-            builder: (ctx) => giftCards[i],
+      itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
+            value: giftCards[i],
             child: GiftCardItem(),
           ),
       itemWidth: _size.width * 0.7,
-      itemHeight: _size.height * 0.52,
+      itemHeight: _size.height * 0.55,
       layout: SwiperLayout.STACK,
       scrollDirection: Axis.vertical,
     );

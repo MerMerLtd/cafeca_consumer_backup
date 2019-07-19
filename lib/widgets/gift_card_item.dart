@@ -1,8 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flip_card/flip_card.dart';
 
 import '../prodivers/gift_card.dart';
 import '../screens/card_detail_screen.dart';
+import '../widgets/scale_route.dart';
+import '../widgets/swipe_detector.dart';
+import '../widgets/gift_card_front.dart';
+import '../widgets/gift_card_back.dart';
 
 class GiftCardItem extends StatefulWidget {
   @override
@@ -10,33 +17,50 @@ class GiftCardItem extends StatefulWidget {
 }
 
 class _GiftCardItemState extends State<GiftCardItem> {
-@override
+  GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
+
+  @override
   Widget build(BuildContext context) {
     final giftCard = Provider.of<GiftCard>(context, listen: false);
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(3),
-      child: GridTile(
-        child: GestureDetector(
-          onDoubleTap: () {
-            Navigator.of(context).pushNamed(
-              CardDetailScreen.routeName,
+    return FlipCard(
+      key: cardKey,
+      flipOnTouch: false,
+      direction: FlipDirection.HORIZONTAL,
+      front: SwipeDetector(
+        onSwipeLeft: () {
+          cardKey.currentState.toggleCard();
+
+          void handleTimeout() {
+            print("hi");
+            // Navigator.of(context).pushNamed(
+            //   CardDetailScreen.routeName,
+            //   arguments: giftCard.id,
+            // );
+            Navigator.push(
+              context,
+              ScaleRoute(
+                child: CardDetailScreen(id: giftCard.id),
+              ),
             );
-          },
-          child: Hero(
-            child: Image.network(
-              giftCard.imageUrl,
-              fit: BoxFit.cover,
-            ),
-            tag: giftCard.id,
-          ),
-        ),
-        footer: GridTileBar(
-          backgroundColor: Colors.white54,
-          title: Text(
-            giftCard.title,
-            textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.grey),
-          ),
+          }
+          // var timer = new
+          Timer(Duration(milliseconds: 500), handleTimeout);
+          Timer(
+            Duration(milliseconds: 500),
+            () => cardKey.currentState.toggleCard(),
+          );
+          // ;
+          // timer.cancel();
+        },
+        // onSwipeRight: () => cardKey.currentState.toggleCard(),
+        child: GiftCardFront(giftCard: giftCard),
+      ),
+      back: SwipeDetector(
+        // onSwipeLeft: () => cardKey.currentState.toggleCard(),
+        onSwipeRight: () => cardKey.currentState.toggleCard(),
+        child: Transform.scale(
+          scale: 1,
+          child: GiftCardBack(giftCard: giftCard),
         ),
       ),
     );
