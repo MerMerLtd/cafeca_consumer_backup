@@ -27,27 +27,10 @@ class _GiftCardItemState extends State<GiftCardItem> {
       flipOnTouch: false,
       direction: FlipDirection.HORIZONTAL,
       front: SwipeDetector(
-        onSwipeLeft: () {
-          cardKey.currentState.toggleCard();
-          // void handleTimeout() {
-          //   Navigator.push(
-          //     context,
-          //     ScaleRoute(
-          //       child: CardDetailScreen(id: giftCard.id),
-          //     ),
-          //   );
-          // }
-          // Timer(Duration(milliseconds: 500), handleTimeout);
-          // Timer(
-          //   Duration(milliseconds: 500),
-          //   () => cardKey.currentState.toggleCard(),
-          // );
-        },
-        // onSwipeRight: () => cardKey.currentState.toggleCard(),
+        onSwipeLeft: () => cardKey.currentState.toggleCard(),
         child: GiftCardFront(giftCard: giftCard),
       ),
       back: SwipeDetector(
-        // onSwipeLeft: () => cardKey.currentState.toggleCard(),
         onSwipeRight: () => cardKey.currentState.toggleCard(),
         child: Transform.scale(
           scale: 1,
