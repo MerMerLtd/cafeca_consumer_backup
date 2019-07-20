@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../prodivers/gift_card.dart';
+import '../widgets/app_bottom_sheet.dart';
 
-class GiftCardBack extends StatelessWidget {
+class GiftCardBack extends StatefulWidget {
   const GiftCardBack({
     Key key,
     @required this.giftCard,
@@ -11,14 +12,24 @@ class GiftCardBack extends StatelessWidget {
   final GiftCard giftCard;
 
   @override
+  _GiftCardBackState createState() => _GiftCardBackState();
+}
+
+class _GiftCardBackState extends State<GiftCardBack> {
+  @override
   Widget build(BuildContext context) {
+    var _inTheShop = false;
+    if (_inTheShop)
+      Scaffold.of(context).showBottomSheet(
+        (ctx) => AppBottomSheet(shopName: 'ShopName',),
+      );
     var _deviceData = MediaQuery.of(context);
     return Stack(
       fit: StackFit.expand,
       children: <Widget>[
         Container(
           child: Image.network(
-            giftCard.imageUrl,
+            widget.giftCard.imageUrl,
             fit: BoxFit.cover,
             color: Color(0x77ffffff),
             colorBlendMode: BlendMode.screen,
@@ -33,7 +44,7 @@ class GiftCardBack extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  giftCard.title,
+                  widget.giftCard.title,
                   style: TextStyle(
                     color: Colors.blueGrey,
                     fontSize: 24,
@@ -51,7 +62,7 @@ class GiftCardBack extends StatelessWidget {
                 padding:
                     EdgeInsets.only(top: 0, right: 10, left: 10, bottom: 10),
                 child: Text(
-                  giftCard.description,
+                  widget.giftCard.description,
                   style: TextStyle(
                     color: Colors.blueGrey,
                   ),
@@ -81,3 +92,4 @@ class GiftCardBack extends StatelessWidget {
     );
   }
 }
+
