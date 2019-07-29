@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flip_card/flip_card.dart';
 
-import '../prodivers/gift_card.dart';
+import '../providers/gift_card.dart';
 // import '../screens/card_detail_screen.dart';
 // import '../widgets/scale_route.dart';
 import '../widgets/swipe_detector.dart';

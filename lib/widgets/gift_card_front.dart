@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../prodivers/gift_card.dart';
+import '../providers/gift_card.dart';
 
 class GiftCardFront extends StatelessWidget {
   const GiftCardFront({

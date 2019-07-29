@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../prodivers/gift_card.dart';
+import '../providers/gift_card.dart';
 import '../widgets/app_bottom_sheet.dart';
 
-class GiftCardBack extends StatefulWidget {
+class GiftCardBack extends StatelessWidget {
   const GiftCardBack({
     Key key,
     @required this.giftCard,
@@ -12,24 +12,21 @@ class GiftCardBack extends StatefulWidget {
   final GiftCard giftCard;
 
   @override
-  _GiftCardBackState createState() => _GiftCardBackState();
-}
-
-class _GiftCardBackState extends State<GiftCardBack> {
-  @override
   Widget build(BuildContext context) {
-    var _inTheShop = false;
-    if (_inTheShop)
-      Scaffold.of(context).showBottomSheet(
-        (ctx) => AppBottomSheet(shopName: 'ShopName',),
-      );
+    // var _inTheShop = false;
+    // if (_inTheShop)
+    //   Scaffold.of(context).showBottomSheet(
+    //     (ctx) => AppBottomSheet(
+    //           shopName: 'ShopName',
+    //         ),
+    //   );
     var _deviceData = MediaQuery.of(context);
     return Stack(
       fit: StackFit.expand,
       children: <Widget>[
         Container(
           child: Image.network(
-            widget.giftCard.imageUrl,
+            giftCard.imageUrl,
             fit: BoxFit.cover,
             color: Color(0x77ffffff),
             colorBlendMode: BlendMode.screen,
@@ -44,7 +41,7 @@ class _GiftCardBackState extends State<GiftCardBack> {
               child: Padding(
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  widget.giftCard.title,
+                  giftCard.title,
                   style: TextStyle(
                     color: Colors.blueGrey,
                     fontSize: 24,
@@ -62,7 +59,7 @@ class _GiftCardBackState extends State<GiftCardBack> {
                 padding:
                     EdgeInsets.only(top: 0, right: 10, left: 10, bottom: 10),
                 child: Text(
-                  widget.giftCard.description,
+                  giftCard.description,
                   style: TextStyle(
                     color: Colors.blueGrey,
                   ),
@@ -92,4 +89,3 @@ class _GiftCardBackState extends State<GiftCardBack> {
     );
   }
 }
-
