@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../screens/cards_overview_screen.dart';
+
 class VerifyCodeInputs extends StatefulWidget {
   @override
   _ValidationCodeInputState createState() => _ValidationCodeInputState();
@@ -29,6 +31,15 @@ class _ValidationCodeInputState extends State<VerifyCodeInputs> {
   void initState() {
     _tc.asMap().forEach((index, tc) => tc.addListener(() {
           _changeFocus(index, tc);
+          if (_checkIfComplete()) {
+            setState(() {
+              _isCompleted = true;
+            });
+          } else {
+            setState(() {
+              _isCompleted = false;
+            });
+          }
         }));
     _fn.asMap().forEach((index, fn) => fn.addListener(() {
           //
@@ -45,12 +56,27 @@ class _ValidationCodeInputState extends State<VerifyCodeInputs> {
 
   void _changeFocus(int index, TextEditingController tc) {
     // index range: 0~5
+    // String text = tc.text;
+    // tc.selection = TextSelection(baseOffset: text.length, extentOffset: text.length);
     if (tc.text.length == 1 && index < 5) {
       FocusScope.of(context).requestFocus(_fn[index + 1]);
     }
     // if (tc.text.isEmpty && index > 0) {
     //   FocusScope.of(context).requestFocus(_fn[index - 1]);
     // }
+  }
+
+  bool _checkIfComplete() {
+    if (_tc[0].text.isNotEmpty &&
+        _tc[1].text.isNotEmpty &&
+        _tc[2].text.isNotEmpty &&
+        _tc[3].text.isNotEmpty &&
+        _tc[4].text.isNotEmpty &&
+        _tc[5].text.isNotEmpty) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   var _isCompleted = false;
@@ -63,6 +89,10 @@ class _ValidationCodeInputState extends State<VerifyCodeInputs> {
     verifyCode = int.parse(verifyCodeArray.reduce((i, j) => i + j));
   }
 
+  var _isLoading = false;
+
+  // 可能可以用validator來 change focus
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -74,6 +104,7 @@ class _ValidationCodeInputState extends State<VerifyCodeInputs> {
               Expanded(
                 flex: 1,
                 child: TextFormField(
+                  textAlign: TextAlign.center,
                   controller: _tc[0],
                   focusNode: _fn[0],
                   textInputAction: TextInputAction.next,
@@ -91,6 +122,7 @@ class _ValidationCodeInputState extends State<VerifyCodeInputs> {
               Expanded(
                 flex: 1,
                 child: TextFormField(
+                  textAlign: TextAlign.center,
                   controller: _tc[1],
                   focusNode: _fn[1],
                   textInputAction: TextInputAction.next,
@@ -107,6 +139,7 @@ class _ValidationCodeInputState extends State<VerifyCodeInputs> {
               Expanded(
                 flex: 1,
                 child: TextFormField(
+                  textAlign: TextAlign.center,
                   controller: _tc[2],
                   focusNode: _fn[2],
                   textInputAction: TextInputAction.next,
@@ -123,6 +156,7 @@ class _ValidationCodeInputState extends State<VerifyCodeInputs> {
               Expanded(
                 flex: 1,
                 child: TextFormField(
+                  textAlign: TextAlign.center,
                   controller: _tc[3],
                   focusNode: _fn[3],
                   textInputAction: TextInputAction.next,
@@ -139,6 +173,7 @@ class _ValidationCodeInputState extends State<VerifyCodeInputs> {
               Expanded(
                 flex: 1,
                 child: TextFormField(
+                  textAlign: TextAlign.center,
                   controller: _tc[4],
                   focusNode: _fn[4],
                   textInputAction: TextInputAction.next,
@@ -155,8 +190,9 @@ class _ValidationCodeInputState extends State<VerifyCodeInputs> {
               Expanded(
                 flex: 1,
                 child: TextFormField(
+                  textAlign: TextAlign.center,
                   inputFormatters: [
-                    LengthLimitingTextInputFormatter(10),
+                    LengthLimitingTextInputFormatter(1),
                   ],
                   controller: _tc[5],
                   focusNode: _fn[5],
@@ -174,6 +210,8 @@ class _ValidationCodeInputState extends State<VerifyCodeInputs> {
           Container(
             width: double.infinity,
             child: RaisedButton(
+              color: Theme.of(context).primaryColor,
+              textColor: Colors.white,
               disabledColor: Colors.grey[200],
               elevation: 0,
               padding: EdgeInsets.symmetric(vertical: 15),
@@ -181,13 +219,15 @@ class _ValidationCodeInputState extends State<VerifyCodeInputs> {
                 '繼續',
                 style: TextStyle(
                   fontSize: 20,
-                  color: Colors.grey,
+                  letterSpacing: 2,
                 ),
               ),
               onPressed: !_isCompleted
                   ? null
                   : () {
-                      // print(verifyCodeArray);
+                      _saveForm();
+                      print(verifyCode);
+                      Navigator.of(context).pushNamed(CardsOverviewScreen.routeName);
                     },
             ),
           ),

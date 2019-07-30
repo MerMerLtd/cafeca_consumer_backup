@@ -6,8 +6,42 @@ import '../widgets/flat_appbar.dart';
 import './sms_code_sending_screen.dart';
 import './sms_code_input_screen.dart';
 
-class PhoneAuthScreen extends StatelessWidget {
+class PhoneAuthScreen extends StatefulWidget {
   static const routeName = '/auth';
+
+  @override
+  _PhoneAuthScreenState createState() => _PhoneAuthScreenState();
+}
+
+class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
+  final _phoneInputController = TextEditingController();
+
+  bool _phoneIsEmpty = true;
+
+  void _whetherPhoneIsEmpty() {
+    if (_phoneInputController.text.isEmpty) {
+      setState(() {
+        _phoneIsEmpty = true;
+      });
+    } else {
+      setState(() {
+        _phoneIsEmpty = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    _phoneInputController.addListener(_whetherPhoneIsEmpty);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _phoneInputController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,6 +96,7 @@ class PhoneAuthScreen extends StatelessWidget {
                   ),
                   Expanded(
                     child: TextFormField(
+                      controller: _phoneInputController,
                       keyboardType: TextInputType.phone,
                       style: TextStyle(fontSize: 20),
                     ),
@@ -99,21 +134,26 @@ class PhoneAuthScreen extends StatelessWidget {
               margin: EdgeInsets.symmetric(horizontal: 30),
               width: double.infinity,
               child: RaisedButton(
+                disabledColor: Colors.grey[200],
+                color: Theme.of(context).primaryColor,
+                textColor: Colors.white,
                 padding: EdgeInsets.all(10),
                 child: Text(
                   '下一步',
-                  style: TextStyle(fontSize: 20, color: Colors.grey),
+                  style: TextStyle(fontSize: 20),
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    // MaterialPageRoute(builder: (context) => SMSCodeSendingScreen()));
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          SMSCodeInputScreen(phone: '+989151529'),
-                    ),
-                  );
-                },
+                onPressed: !_phoneIsEmpty
+                    ? () {
+                        Navigator.push(
+                          context,
+                          // MaterialPageRoute(builder: (context) => SMSCodeSendingScreen()));
+                          MaterialPageRoute(
+                            builder: (context) => SMSCodeInputScreen(
+                                phone: '+886 ' + _phoneInputController.text),
+                          ),
+                        );
+                      }
+                    : null,
               ),
             ),
           ],

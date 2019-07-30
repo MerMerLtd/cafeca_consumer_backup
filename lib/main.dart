@@ -30,7 +30,7 @@ class CafecaConsumer extends StatelessWidget {
           primarySwatch: Colors.pink,
           accentColor: Colors.pinkAccent,
         ),
-        home: ImageScreen(),
+        home:ImageScreen(), //CardsOverviewScreen(),
         routes: {
           PhoneAuthScreen.routeName: (ctx) => PhoneAuthScreen(),
           CardsOverviewScreen.routeName: (ctx) => CardsOverviewScreen(),
