@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 // https://mightytechno.com/flutter-circle-progress-using-custom-painter/
+// https://github.com/yumi0629/FlutterUI/tree/master/lib/circleprogressbar
 
 class CircleProgress extends CustomPainter{
 
