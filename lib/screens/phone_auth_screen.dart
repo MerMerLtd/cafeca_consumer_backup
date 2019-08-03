@@ -6,6 +6,9 @@ import '../widgets/flat_appbar.dart';
 import './sms_code_sending_screen.dart';
 import './sms_code_input_screen.dart';
 
+import 'package:provider/provider.dart';
+import '../providers/auth.dart';
+
 class PhoneAuthScreen extends StatefulWidget {
   static const routeName = '/auth';
 
@@ -44,6 +47,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -144,6 +148,8 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                 ),
                 onPressed: !_phoneIsEmpty
                     ? () {
+                      final auth = Provider.of<Auth>(context);
+                      // auth.getVerifyCode('+886 ${_phoneInputController.text}');
                         Navigator.push(
                           context,
                           // MaterialPageRoute(builder: (context) => SMSCodeSendingScreen()));
