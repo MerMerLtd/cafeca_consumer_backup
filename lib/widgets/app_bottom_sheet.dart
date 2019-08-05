@@ -52,9 +52,9 @@ class AppBottomSheet extends StatelessWidget {
                       ),
                       onPressed: () {},
                     ),
-                    OutlineButton(
+                    FlatButton(
                       child: Icon(Icons.expand_more),
-                      shape: CircleBorder(),
+                      shape: CircleBorder(side: BorderSide.none),
                       onPressed: () {
                         Navigator.pop(context);
                       },

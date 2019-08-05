@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
 import '../providers/gift_card.dart';
+
 import '../widgets/app_bottom_sheet.dart';
 
 class GiftCardBack extends StatelessWidget {
@@ -68,20 +69,68 @@ class GiftCardBack extends StatelessWidget {
               ),
             ),
             Spacer(),
-            ConstrainedBox(
-                constraints:
-                    BoxConstraints(maxHeight: _deviceData.size.height) * 0.25,
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: <Widget>[
-                    Container(
-                      decoration: BoxDecoration(color: Colors.white54),
-                    ),
-                    ListView.builder(
-                      itemBuilder: (BuildContext context, int index) {},
-                    )
-                  ],
-                )),
+            Container(
+              height: _deviceData.size.height * 0.25,
+              width: double.infinity,
+              color: Colors.white54,
+              child: FutureBuilder(
+                future: giftCard.fetchAvailableShops(),
+                builder: (ctx, snapshot) => snapshot.data == null
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : ListView.builder(
+                        itemCount:
+                            snapshot.data.length, // giftCard.availableShops[i]
+                        itemBuilder: (ctx, i) => Container(
+                          margin:
+                              EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              InkWell(
+                                child: Text(giftCard.availableShops[i]['name']),
+                                onTap: () {
+                                  print(giftCard.availableShops[i].toString());
+                                  Scaffold.of(context).showBottomSheet(
+                                    (ctx) => AppBottomSheet(
+                                      shopName: giftCard.availableShops[i]['name'],
+                                    ),
+                                  );
+                                },
+                              ),
+                              Text(giftCard.availableShops[i]['distance']
+                                  .toString()),
+                            ],
+                          ),
+                        ),
+                      ),
+              ),
+              // child: Consumer<GiftCard>(
+              //   builder: (ctx, gc, _) {
+              //     print(gc.availableShops.toString());
+              //     return Center(
+              //       child: Text(gc.availableShops.toString()),
+              //     );
+              //   },
+              // )
+              //   builder: (ctx, giftCard, _) => giftCard != null
+              //       ? ListView.builder(
+              //           itemCount: giftCard.availableShops.length,
+              //           itemBuilder: (ctx, i) => Row(
+              //             children: <Widget>[
+              //               InkWell(
+              //                 child: Text(giftCard.availableShops[i]['name']),
+              //                 onTap: () {
+              //                   print(giftCard.availableShops[i].toString());
+              //                 },
+              //               ),
+              //             ],
+              //           ),
+              //         )
+              //       : CircularProgressIndicator(),
+              // ),
+            ),
           ],
         ),
       ],
@@ -89,3 +138,8 @@ class GiftCardBack extends StatelessWidget {
     );
   }
 }
+
+// Text(
+//                             availableShopSnapshot.data.toString(),
+//                             // giftCard.availableShops.toString(),
+//                           ),

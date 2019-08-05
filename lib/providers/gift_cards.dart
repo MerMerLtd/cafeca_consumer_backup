@@ -16,7 +16,6 @@ class GiftCards with ChangeNotifier {
       price: 19.99,
       imageUrl:
           'https://images.unsplash.com/photo-1501199846642-3181f389551d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80',
-      availableShopsId: [],
     ),
     GiftCard(
       id: 'i2',
@@ -26,7 +25,6 @@ class GiftCards with ChangeNotifier {
       price: 9.99,
       imageUrl:
           'https://images.unsplash.com/photo-1558234469-50fc184d1cc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1868&q=80',
-      availableShopsId: [],
     ),
     GiftCard(
       id: 'i3',
@@ -36,7 +34,6 @@ class GiftCards with ChangeNotifier {
       price: 13.99,
       imageUrl:
           'https://images.unsplash.com/photo-1560156710-0580247f9f69?ixlib=rb-1.2.1&auto=format&fit=crop&w=933&q=80',
-      availableShopsId: [],
     ),
     GiftCard(
       id: 'i4',
@@ -46,7 +43,6 @@ class GiftCards with ChangeNotifier {
       price: 16.99,
       imageUrl:
           'https://images.unsplash.com/photo-1553097736-d7382ec6c441?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=922&q=80',
-      availableShopsId: [],
     ),
   ];
 

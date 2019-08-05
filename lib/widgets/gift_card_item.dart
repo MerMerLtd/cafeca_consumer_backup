@@ -32,7 +32,11 @@ class _GiftCardItemState extends State<GiftCardItem> {
       flipOnTouch: false,
       direction: FlipDirection.HORIZONTAL,
       front: SwipeDetector(
-        onSwipeLeft: () => cardKey.currentState.toggleCard(),
+        onSwipeLeft: () {
+          cardKey.currentState.toggleCard();
+          giftCard.fetchAvailableShops();
+          print(giftCard.availableShops);
+        },
         // onSwipeRight: () => cardKey.currentState.toggleCard(),
         child: GiftCardFront(giftCard: giftCard),
       ),
