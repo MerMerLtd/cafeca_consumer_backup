@@ -5,6 +5,7 @@ import 'package:page_transition/page_transition.dart';
 import './phone_auth_screen.dart';
 
 class ImageScreen extends StatefulWidget {
+  static const routeName = '/login';
   @override
   _ImageScreenState createState() => _ImageScreenState();
 }

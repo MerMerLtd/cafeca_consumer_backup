@@ -3,11 +3,36 @@ import 'package:flutter/material.dart';
 import '../widgets/flat_appbar.dart';
 import '../widgets/verify_code_inputs.dart';
 import '../widgets/terms.dart';
+import 'package:provider/provider.dart';
+import '../providers/auth.dart';
 
-class SMSCodeInputScreen extends StatelessWidget {
+import '../screens/cards_overview_screen.dart';
+
+class SMSCodeInputScreen extends StatefulWidget {
   final String phone;
-
   const SMSCodeInputScreen({this.phone});
+
+  @override
+  _SMSCodeInputScreenState createState() => _SMSCodeInputScreenState();
+}
+
+class _SMSCodeInputScreenState extends State<SMSCodeInputScreen> {
+  var _isCompleted = false;
+  var _code;
+  Future<void> _verrfyCode() async {
+    print(_code);
+    if (_code == null) {
+      return;
+    }
+    try {
+      await Provider.of<Auth>(context).verify(_code);
+      //https://zhuanlan.zhihu.com/p/56289929
+      Navigator.of(context).pushNamedAndRemoveUntil(
+          CardsOverviewScreen.routeName, (Route<dynamic> route) => false);
+    } catch (error) {
+      throw error;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +68,7 @@ class SMSCodeInputScreen extends StatelessWidget {
                   ),
                   Container(
                     child: Text(
-                      phone,
+                      widget.phone,
                       style: TextStyle(
                         fontSize: 20,
                         color: Theme.of(context).primaryColor,
@@ -55,28 +80,46 @@ class SMSCodeInputScreen extends StatelessWidget {
                     height: 30,
                   ),
                   //========== validation code ===========
-                  VerifyCodeInputs(),
+                  VerifyCodeInputs(
+                    onCompleted: (String value) {
+                      if (value.length < 6) {
+                        setState(() {
+                          _isCompleted = false;
+                        });
+                      } else {
+                        setState(() {
+                          _isCompleted = true;
+                          _code = value;
+                        });
+                      }
+                    },
+                  ),
                   //======================================
                   SizedBox(
                     height: 20,
                   ),
 
-                  // Container(
-                  //   width: double.infinity,
-                  //   child: RaisedButton(
-                  //     elevation: 0,
-                  //     padding: EdgeInsets.symmetric(vertical: 15),
-                  //     child: Text(
-                  //       '繼續',
-                  //       style: TextStyle(
-                  //         fontSize: 20,
-                  //         color: Colors.grey,
-                  //       ),
-                  //     ),
-                  //     onPressed: () {},
-                  //   ),
-                  // ),
-                 
+                  Container(
+                    width: double.infinity,
+                    child: RaisedButton(
+                      color: Theme.of(context).primaryColor,
+                      textColor: Colors.white,
+                      disabledColor: Colors.grey[200],
+                      elevation: 0,
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                      child: Text(
+                        '繼續',
+                        style: TextStyle(
+                          fontSize: 20,
+                          letterSpacing: 2,
+                        ),
+                      ),
+                      onPressed: _isCompleted ? _verrfyCode : null,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Container(
                     width: double.infinity,
                     child: FlatButton(

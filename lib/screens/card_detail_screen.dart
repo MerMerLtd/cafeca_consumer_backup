@@ -9,7 +9,6 @@ import '../widgets/app_bottom_sheet.dart';
 class CardDetailScreen extends StatelessWidget {
   static const routeName = '/gift-card-detail';
 
-  //
   final String id;
 
   const CardDetailScreen({this.id});
