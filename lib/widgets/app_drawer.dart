@@ -16,9 +16,9 @@ class AppDrawer extends StatelessWidget {
           Divider(),
           ListTile(
             leading: Icon(Icons.card_giftcard),
-            title: Text('My Gift Cards'),
+            title: Text('My GiftCards'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed('/cards');
+              Navigator.of(context).pushReplacementNamed('/');
             },
           ),
           Divider(),
@@ -28,10 +28,7 @@ class AppDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pop();
               Navigator.of(context).pushReplacementNamed('/');
-
-              // Navigator.of(context)
-              //     .pushReplacementNamed(UserProductsScreen.routeName);
-              // Provider.of<Auth>(context, listen: false).logout();
+              Provider.of<Auth>(context, listen: false).logout();
             },
           ),
         ],

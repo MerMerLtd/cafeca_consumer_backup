@@ -32,22 +32,23 @@ class _ImageScreenState extends State<ImageScreen> {
               // color: Color(0xff112233),
               // =====================================
               // ===== Image Background =====
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage(
-                    'https://images.unsplash.com/photo-1520646924857-261be3037bc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80'),
-              ),
+              // image: DecorationImage(
+              //   fit: BoxFit.cover,
+              //   image: NetworkImage(
+              //       'https://images.unsplash.com/photo-1520646924857-261be3037bc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80'),
+              // ),
               // =====================================
               // ===== Gradient Color background =====
               //https://www.eggradients.com/category/black-and-blue-gradient?cf9e2668_page=2
-              // gradient: LinearGradient(
-              //   begin: Alignment.topLeft,
-              //   end: Alignment.bottomRight,
-              //   colors: <Color>[
-              //     Color(0xff20A4F3),
-              //     Color(0xff182B3A),
-              //   ],
-              // ),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: <Color>[
+                  Theme.of(context).primaryColor,
+                  Theme.of(context).primaryColor,
+                  Colors.red,
+                ],
+              ),
               // =====================================
             ),
           ),

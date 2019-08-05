@@ -178,6 +178,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                                 ),
                                 Expanded(
                                   child: TextFormField(
+                                    autofocus: true,
                                     controller: _phoneInputController,
                                     keyboardType: TextInputType.phone,
                                     style: TextStyle(fontSize: 20),

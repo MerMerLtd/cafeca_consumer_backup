@@ -28,7 +28,7 @@ class _SMSCodeInputScreenState extends State<SMSCodeInputScreen> {
       await Provider.of<Auth>(context).verify(_code);
       //https://zhuanlan.zhihu.com/p/56289929
       Navigator.of(context).pushNamedAndRemoveUntil(
-          CardsOverviewScreen.routeName, (Route<dynamic> route) => false);
+          '/', (Route<dynamic> route) => false);
     } catch (error) {
       throw error;
     }
