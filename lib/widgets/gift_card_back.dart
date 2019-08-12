@@ -41,14 +41,20 @@ class GiftCardBack extends StatelessWidget {
               color: Colors.white54,
               child: Padding(
                 padding: EdgeInsets.all(10),
-                child: Text(
-                  giftCard.title,
-                  style: TextStyle(
-                    color: Colors.blueGrey,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+                child: ListTile(
+                  contentPadding: EdgeInsets.all(0),
+                  title: Text(
+                    giftCard.title,
+                    style: TextStyle(
+                      color: Colors.blueGrey,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.left,
                   ),
-                  textAlign: TextAlign.left,
+                  trailing: IconButton(icon: Icon(Icons.send), onPressed: (){
+                    // open bluetooth
+                  },),
                 ),
               ),
             ),
@@ -94,7 +100,8 @@ class GiftCardBack extends StatelessWidget {
                                   print(giftCard.availableShops[i].toString());
                                   Scaffold.of(context).showBottomSheet(
                                     (ctx) => AppBottomSheet(
-                                      shopName: giftCard.availableShops[i]['name'],
+                                      shopName: giftCard.availableShops[i]
+                                          ['name'],
                                     ),
                                   );
                                 },

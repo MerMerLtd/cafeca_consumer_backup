@@ -14,7 +14,7 @@ class VerifyCodeInputs extends StatefulWidget {
       this.keyboardType = TextInputType.number,
       this.length = 6,
       this.itemDecoration,
-      this.itemSize = 48,
+      this.itemSize = 40,
       this.textStyle = const TextStyle(fontSize: 22.0, color: Colors.grey),
       this.autofocus = true})
       : assert(length > 0),
