@@ -39,18 +39,18 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-            title: Text('An Error Occurred!'),
-            content: Text(message),
-            actions: <Widget>[
-              FlatButton(
-                child: Text('Okay'),
-                onPressed: () {
-                  _phoneInputController.text = '';
-                  Navigator.of(ctx).pop();
-                },
-              )
-            ],
-          ),
+        title: Text('An Error Occurred!'),
+        content: Text(message),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Okay'),
+            onPressed: () {
+              _phoneInputController.text = '';
+              Navigator.of(ctx).pop();
+            },
+          )
+        ],
+      ),
     );
   }
 
@@ -94,6 +94,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
             SMSCodeInputScreen(phone: '+886 ' + _phoneInputController.text),
       ),
     );
+
     ///===============================
     ///===============================
     setState(() {
@@ -126,7 +127,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                   '登入Cafeca',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 24,
+                      fontSize: 18,
                       color: Theme.of(context).primaryColor),
                 ),
               ),
@@ -142,7 +143,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                             child: Text(
                               '輸入手機號碼',
                               style: TextStyle(
-                                  fontSize: 20,
+                                  // fontSize: 20,
                                   color: Theme.of(context).primaryColor),
                             ),
                           ),
@@ -164,7 +165,9 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                                       Text(
                                         '+886',
                                         style: TextStyle(
-                                            fontSize: 20, color: Colors.grey),
+                                          // fontSize: 20,
+                                          color: Colors.grey,
+                                        ),
                                       ),
                                       Icon(
                                         Icons.expand_more,
@@ -181,7 +184,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                                     autofocus: true,
                                     controller: _phoneInputController,
                                     keyboardType: TextInputType.phone,
-                                    style: TextStyle(fontSize: 20),
+                                    // style: TextStyle(fontSize: 20),
                                     // validator: (value) {
                                     //   if (value.length < 9) {
                                     //     return 'phone number is too short!';
@@ -235,7 +238,7 @@ class _PhoneAuthScreenState extends State<PhoneAuthScreen> {
                               padding: EdgeInsets.all(10),
                               child: Text(
                                 '下一步',
-                                style: TextStyle(fontSize: 20),
+                                // style: TextStyle(fontSize: 20),
                               ),
                               onPressed: !_phoneIsEmpty
                                   ? () {

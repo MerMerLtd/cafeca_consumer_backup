@@ -13,10 +13,18 @@ class GiftCardFront extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FlutterBlue flutterBlue = FlutterBlue.instance;
+
     return GestureDetector(
-      onDoubleTap: (){
-        // open bluetooth
-        print('ON DOUBLE TAP');
+      onDoubleTap: () {
+        if(flutterBlue.isScanning == true) {
+          return;
+        }
+        var scanSubscription = flutterBlue.scan().listen((scanResult) {
+          // do something with scan result
+          var device = scanResult.device;
+          print('${device.name} found! rssi: ${scanResult.rssi}');
+        });
         
         
       },

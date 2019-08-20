@@ -23,7 +23,6 @@ class _GiftCardItemState extends State<GiftCardItem> {
   @override
   Widget build(BuildContext context) {
     final giftCard = Provider.of<GiftCard>(context, listen: false);
-    final authData = Provider.of<Auth>(context, listen: false);
 
     ///  ======= mark used ======
     /// giftCard.markUsedStatus(authData.token, authData.userId,);

@@ -8,16 +8,19 @@ class VerifyCodeInputs extends StatefulWidget {
   final BoxDecoration itemDecoration;
   final TextStyle textStyle;
   final bool autofocus;
-  VerifyCodeInputs(
-      {Key key,
-      this.onCompleted,
-      this.keyboardType = TextInputType.number,
-      this.length = 6,
-      this.itemDecoration,
-      this.itemSize = 40,
-      this.textStyle = const TextStyle(fontSize: 22.0, color: Colors.grey),
-      this.autofocus = true})
-      : assert(length > 0),
+  VerifyCodeInputs({
+    Key key,
+    this.onCompleted,
+    this.keyboardType = TextInputType.number,
+    this.length = 6,
+    this.itemDecoration,
+    this.itemSize = 40,
+    this.textStyle = const TextStyle(
+      // fontSize: 22.0,
+      color: Colors.grey,
+    ),
+    this.autofocus = true,
+  })  : assert(length > 0),
         assert(itemSize > 0),
         super(key: key);
 

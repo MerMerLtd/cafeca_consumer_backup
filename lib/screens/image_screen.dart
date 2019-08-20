@@ -55,7 +55,7 @@ class _ImageScreenState extends State<ImageScreen> {
           Column(
             children: <Widget>[
               Expanded(
-                  flex: 3,
+                  flex: 2,
                   child: Center(
                     child: CircleAvatar(
                       radius: 100,
@@ -72,7 +72,7 @@ class _ImageScreenState extends State<ImageScreen> {
                         '建立新帳號',
                         style: TextStyle(
                           color: Color(0xffffffff),
-                          fontSize: 20,
+                          fontSize: 16,
                           decoration: TextDecoration.underline,
                         ),
                       ),
@@ -95,7 +95,7 @@ class _ImageScreenState extends State<ImageScreen> {
                         child: Text(
                           '以電話號碼登入',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 16,
                             decoration: TextDecoration.none,
                           ),
                         ),
@@ -122,7 +122,7 @@ class _ImageScreenState extends State<ImageScreen> {
                       child: Text(
                         '登入時遇到問題嗎？',
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 16,
                           decoration: TextDecoration.none,
                         ),
                       ),
