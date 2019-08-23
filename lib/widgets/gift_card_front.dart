@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../providers/gift_card.dart';
-import 'package:flutter_blue/flutter_blue.dart';
+// import 'package:flutter_blue/flutter_blue.dart';
 
 class GiftCardFront extends StatelessWidget {
   const GiftCardFront({
@@ -13,19 +13,10 @@ class GiftCardFront extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FlutterBlue flutterBlue = FlutterBlue.instance;
-
+    // FlutterBlue flutterBlue = FlutterBlue.instance;
     return GestureDetector(
       onDoubleTap: () {
-        if(flutterBlue.isScanning == true) {
-          return;
-        }
-        var scanSubscription = flutterBlue.scan().listen((scanResult) {
-          // do something with scan result
-          var device = scanResult.device;
-          print('${device.name} found! rssi: ${scanResult.rssi}');
-        });
-        
+      
         
       },
       child: ClipRRect(

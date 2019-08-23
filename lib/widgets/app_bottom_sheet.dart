@@ -26,7 +26,7 @@ class AppBottomSheet extends StatelessWidget {
                       child: Text(
                         shopName,
                         style: TextStyle(
-                          fontSize: 20,
+                          // fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.blueGrey,
                         ),
@@ -37,7 +37,7 @@ class AppBottomSheet extends StatelessWidget {
                       textColor:
                           Theme.of(context).primaryTextTheme.title.color,
                       padding: EdgeInsets.symmetric(
-                          horizontal: 60, vertical: 16),
+                          horizontal: 120, vertical: 16),
                       shape: StadiumBorder(),
                       //https://blog.csdn.net/yuzhiqiang_1993/article/details/85004313
                       // BeveledRectangleBorder 带斜角的长方形边框
@@ -47,7 +47,7 @@ class AppBottomSheet extends StatelessWidget {
                       child: Text(
                         '兌換',
                         style: TextStyle(
-                          fontSize: 16,
+                          // fontSize: 16,
                         ),
                       ),
                       onPressed: () {},
