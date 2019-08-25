@@ -8,7 +8,9 @@ import './screens/card_detail_screen.dart';
 import './screens/phone_auth_screen.dart';
 import './providers/auth.dart';
 import './providers/gift_cards.dart';
+import './providers/gift_card.dart';
 import './screens/splash_screen.dart';
+// import './screens/list_service_counters.dart';
 
 void main() => runApp(CafecaConsumer());
 
@@ -24,12 +26,15 @@ class CafecaConsumer extends StatelessWidget {
           ChangeNotifierProvider.value(
             value: GiftCards(),
           ),
+          ChangeNotifierProvider.value(
+            value: GiftCard(),
+          )
         ],
         child: Consumer<Auth>(
           builder: (ctx, auth, child) => MaterialApp(
             title: 'Cafeca',
             theme: ThemeData(
-              primarySwatch: Colors.pink,
+              primarySwatch: Colors.blueGrey,
               accentColor: Colors.pinkAccent,
             ),
             home: auth.isAuth
@@ -47,6 +52,7 @@ class CafecaConsumer extends StatelessWidget {
               CardDetailScreen.routeName: (ctx) => CardDetailScreen(),
               PhoneAuthScreen.routeName: (ctx) => PhoneAuthScreen(),
               CardsOverviewScreen.routeName: (ctx) => CardsOverviewScreen(),
+              // ListServiceCounters.routeName: (ctx) => ListServiceCounters(),
             },
           ),
         ));

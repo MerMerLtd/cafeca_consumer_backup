@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class AppBottomSheet extends StatelessWidget {
   final String shopName;
-  const AppBottomSheet({this.shopName,});
+  final Function onPressed;
+  const AppBottomSheet({this.shopName, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +51,7 @@ class AppBottomSheet extends StatelessWidget {
                           // fontSize: 16,
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: onPressed,
                     ),
                     FlatButton(
                       child: Icon(Icons.expand_more),

@@ -21,11 +21,11 @@ class CardSwiper extends StatelessWidget {
             value: giftCards[i],
             child: Transform.scale(
               child: GiftCardItem(),
-              scale: 0.7,
+              scale: 0.8,
             ),
           ),
-      itemWidth: _size.width, //* 0.7,
-      itemHeight: _size.height * 0.88, // * 0.55,
+      itemWidth: _size.width*0.9, //* 0.7,
+      itemHeight: _size.height * 0.8, // * 0.55,
       layout: SwiperLayout.STACK,
       scrollDirection: Axis.vertical,
     );

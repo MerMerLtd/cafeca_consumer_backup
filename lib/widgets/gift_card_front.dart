@@ -13,7 +13,6 @@ class GiftCardFront extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // FlutterBlue flutterBlue = FlutterBlue.instance;
     return GestureDetector(
       onDoubleTap: () {
       

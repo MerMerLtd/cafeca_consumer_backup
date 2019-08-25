@@ -9,7 +9,7 @@ class SpiralButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: GestureDetector(
+      child: InkWell(
         onTap: onPressed,
         child: Container(
           height: radius,
