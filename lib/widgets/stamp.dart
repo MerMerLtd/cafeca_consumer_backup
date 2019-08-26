@@ -20,7 +20,7 @@ class Stamp extends StatelessWidget {
     return Align(
       alignment: position != null ? position : Alignment.bottomRight,
       child: Transform.rotate(
-        angle: angle != null ? angle : pi / 12.0,
+        angle: angle != null ? angle : -pi / 12.0,
         child: Container(
           child: Center(
             child: Column(
