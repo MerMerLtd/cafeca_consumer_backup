@@ -22,7 +22,7 @@ class _GiftCardItemState extends State<GiftCardItem> {
 
   @override
   Widget build(BuildContext context) {
-    final giftCard = Provider.of<GiftCard>(context, listen: false);
+    final giftCard = Provider.of<GiftCard>(context);
 
     ///  ======= mark used ======
     /// giftCard.markUsedStatus(authData.token, authData.userId,);
@@ -34,7 +34,6 @@ class _GiftCardItemState extends State<GiftCardItem> {
         onSwipeLeft: () {
           cardKey.currentState.toggleCard();
           giftCard.findServiceCounters();
-          print(giftCard.serviceCounters);
         },
         // onSwipeRight: () => cardKey.currentState.toggleCard(),
         child: GiftCardFront(giftCard: giftCard),

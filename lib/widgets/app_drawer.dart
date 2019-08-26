@@ -15,8 +15,8 @@ class AppDrawer extends StatelessWidget {
             automaticallyImplyLeading: false,
           ),
           ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Open Setting'),
+            leading: Icon(Icons.payment),
+            title: Text('Payment Settings'),
             onTap: () {
               
             },

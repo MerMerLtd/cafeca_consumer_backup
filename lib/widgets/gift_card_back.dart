@@ -1,9 +1,12 @@
+import 'package:cafeca_consumer/providers/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../providers/gift_card.dart';
 
 import './spiral_button.dart';
 import '../widgets/app_bottom_sheet.dart';
+import '../widgets/stamp.dart';
 
 enum Mode { Details, Services }
 
@@ -80,31 +83,39 @@ class _GiftCardBackState extends State<GiftCardBack> {
                   ),
                   Spacer(),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20.0),
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          'Find service counters',
-                          style: TextStyle(
-                            color: Colors.blueGrey,
+                    padding: const EdgeInsets.all(8.0),
+                    child: widget.giftCard.isUsed
+                        ? Stamp(
+                            shopName: 'xxx',
+                            date: '2019-08-26',
+                          )
+                        : Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20.0),
+                            child: Column(
+                              children: <Widget>[
+                                Text(
+                                  'Find service counters',
+                                  style: TextStyle(
+                                    color: Colors.blueGrey,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                SpiralButton(
+                                  radius: 50.0,
+                                  buttonColor: Colors.white60,
+                                  onPressed: () {
+                                    // print('on Pressed');
+                                    setState(() {
+                                      _mode = Mode.Services;
+                                    });
+                                    // Navigator.push(context, PageTransition(type: PageTransitionType.downToUp, child: ListServiceCounters()));
+                                  },
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SpiralButton(
-                          radius: 50.0,
-                          buttonColor: Colors.white60,
-                          onPressed: () {
-                            // print('on Pressed');
-                            setState(() {
-                              _mode = Mode.Services;
-                            });
-                            // Navigator.push(context, PageTransition(type: PageTransitionType.downToUp, child: ListServiceCounters()));
-                          },
-                        ),
-                      ],
-                    ),
                   ),
                 ],
               )
@@ -151,7 +162,7 @@ class _GiftCardBackState extends State<GiftCardBack> {
                                         child: FittedBox(
                                           fit: BoxFit.cover,
                                           child: Image.network(
-                                              'https://images.unsplash.com/photo-1563910930658-1907bfa80f42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80'),
+                                              widget.giftCard.imageUrl),
                                         ),
                                       ),
                                     ],
@@ -163,7 +174,85 @@ class _GiftCardBackState extends State<GiftCardBack> {
                                       shopName: widget
                                           .giftCard.serviceCounters[i]['name'],
                                       onPressed: () {
-                                        print("I was pressed");
+                                        Navigator.pop(context);
+                                        showDialog(
+                                            context: context,
+                                            builder: (ctx) => AlertDialog(
+                                                  title: RichText(
+                                                    text: TextSpan(
+                                                      children: [
+                                                        TextSpan(
+                                                            style: TextStyle(
+                                                              fontSize: 20.0,
+                                                              color:
+                                                                  Colors.grey,
+                                                            ),
+                                                            text:
+                                                                'Are you sure you want to refeed '),
+                                                        TextSpan(
+                                                          style: TextStyle(
+                                                            fontSize: 20.0,
+                                                            color:
+                                                                Colors.blueGrey,
+                                                          ),
+                                                          text:
+                                                              '${widget.giftCard.title} ',
+                                                        ),
+                                                        TextSpan(
+                                                          style: TextStyle(
+                                                            fontSize: 20.0,
+                                                            color: Colors.grey,
+                                                          ),
+                                                          text: 'in ',
+                                                        ),
+                                                        TextSpan(
+                                                          style: TextStyle(
+                                                            fontSize: 20.0,
+                                                            color:
+                                                                Colors.blueGrey,
+                                                          ),
+                                                          text:
+                                                              '${widget.giftCard.serviceCounters[i]['name']} ',
+                                                        ),
+                                                        TextSpan(
+                                                          text: '? ',
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  actions: <Widget>[
+                                                    FlatButton(
+                                                      child: Text('No'),
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                        print(
+                                                            ' ${widget.giftCard.isUsed} ');
+                                                      },
+                                                    ),
+                                                    FlatButton(
+                                                        child: Text('Yes'),
+                                                        onPressed: () {
+                                                          widget.giftCard
+                                                              .markUsedStatus(
+                                                                  Provider.of<Auth>(
+                                                                          context)
+                                                                      .token);
+                                                          // widget.giftCard
+                                                          //     .giveCard(Provider
+                                                          //             .of<Auth>(
+                                                          //                 context)
+                                                          //         .token);
+                                                          Navigator.pop(
+                                                              context);
+                                                          print(
+                                                              ' ${widget.giftCard.isUsed} ');
+                                                          setState(() {
+                                                            _mode =
+                                                                Mode.Details;
+                                                          });
+                                                        }),
+                                                  ],
+                                                ));
                                       },
                                     ),
                                   );

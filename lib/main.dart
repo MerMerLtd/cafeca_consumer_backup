@@ -35,7 +35,7 @@ class CafecaConsumer extends StatelessWidget {
             title: 'Cafeca',
             theme: ThemeData(
               primarySwatch: Colors.blueGrey,
-              accentColor: Colors.pinkAccent,
+              accentColor: Colors.grey,
             ),
             home: auth.isAuth
                 ? CardsOverviewScreen()
