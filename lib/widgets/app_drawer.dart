@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import '../providers/auth.dart';
 
-
 class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

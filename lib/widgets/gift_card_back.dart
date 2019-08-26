@@ -1,4 +1,5 @@
 import 'package:cafeca_consumer/providers/auth.dart';
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,11 +13,10 @@ enum Mode { Details, Services }
 
 class GiftCardBack extends StatefulWidget {
   final GiftCard giftCard;
+  final GlobalKey<FlipCardState> cardKey;
 
-  GiftCardBack({
-    Key key,
-    @required this.giftCard,
-  }) : super(key: key);
+  GiftCardBack({Key key, @required this.giftCard, this.cardKey})
+      : super(key: key);
 
   @override
   _GiftCardBackState createState() => _GiftCardBackState();
@@ -88,6 +88,7 @@ class _GiftCardBackState extends State<GiftCardBack> {
                         ? Stamp(
                             shopName: 'xxx',
                             date: '2019-08-26',
+                            color: Colors.black38,
                           )
                         : Padding(
                             padding: const EdgeInsets.symmetric(vertical: 20.0),
@@ -244,12 +245,11 @@ class _GiftCardBackState extends State<GiftCardBack> {
                                                           //         .token);
                                                           Navigator.pop(
                                                               context);
-                                                          print(
-                                                              ' ${widget.giftCard.isUsed} ');
                                                           setState(() {
                                                             _mode =
                                                                 Mode.Details;
                                                           });
+                                                          widget.cardKey.currentState.toggleCard();
                                                         }),
                                                   ],
                                                 ));
@@ -283,6 +283,12 @@ class _GiftCardBackState extends State<GiftCardBack> {
                 ],
               ),
       ],
+      // ),
     );
   }
 }
+
+// Text(
+//                             availableShopSnapshot.data.toString(),
+//                             // giftCard.availableShops.toString(),
+//                           ),

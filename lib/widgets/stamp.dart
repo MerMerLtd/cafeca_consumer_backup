@@ -6,6 +6,7 @@ class Stamp extends StatelessWidget {
   final String date;
   final double angle;
   final AlignmentGeometry position;
+  final Color color;
 
   const Stamp({
     Key key,
@@ -13,6 +14,7 @@ class Stamp extends StatelessWidget {
     @required this.date,
     this.angle,
     this.position,
+    this.color
   }) : super(key: key);
 
   @override
@@ -20,7 +22,7 @@ class Stamp extends StatelessWidget {
     return Align(
       alignment: position != null ? position : Alignment.bottomRight,
       child: Transform.rotate(
-        angle: angle != null ? angle : -pi / 12.0,
+        angle: angle != null ? angle : pi / 12.0,
         child: Container(
           child: Center(
             child: Column(
@@ -28,18 +30,18 @@ class Stamp extends StatelessWidget {
               children: <Widget>[
                 Text(
                   'USED',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: color != null ? color: Colors.white),
                 ),
                 Text(
                   'in $shopName',
-                  style: TextStyle(fontSize: 10, color: Colors.white70),
+                  style: TextStyle(fontSize: 10, color: color != null ? color: Colors.white70),
                 ),
                 Text(
                   '$date',
                   style: TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                      color: color != null ? color: Colors.white),
                 ),
               ],
             ),
@@ -49,7 +51,7 @@ class Stamp extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(
-              color: Colors.white60,
+              color: color != null ? color: Colors.white60,
               width: 10.0,
             ),
           ),

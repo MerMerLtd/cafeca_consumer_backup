@@ -31,7 +31,6 @@ class GiftCard with ChangeNotifier {
     notifyListeners();
   }
 
-
   Future<void> markUsedStatus(String token) async {
     isUsed = true;
     notifyListeners();
@@ -82,28 +81,26 @@ class GiftCard with ChangeNotifier {
 // Get the information of a card
   Future<void> giveCard(String token) async {
     final url = 'https://api.cafeca.cc/api/v1/user/card/$id/give';
-    print(token);
-    print(id);
-    // try {
-    //   final response = await http.post(
-    //     url,
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       'Token': token,
-    //     },
-    //     body: json.encode({}),
-    //   );
-    //   final extractedData = json.decode(response.body) as Map<String, dynamic>;
-    //   if (extractedData['success'] == false) {
-    //     // error handling...
-    //     return;
-    //   }
-    //   if (extractedData['success'] == true) {
-    //     return;
-    //   }
-    // } catch (error) {
-    //   // error handling...
-    // }
+    try {
+      final response = await http.post(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+          'Token': token,
+        },
+        body: json.encode({}),
+      );
+      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      if (extractedData['success'] == false) {
+        // error handling...
+        return;
+      }
+      if (extractedData['success'] == true) {
+        return;
+      }
+    } catch (error) {
+      // error handling...
+    }
   }
 // Find Nearby Users
 // find those users who are close to you

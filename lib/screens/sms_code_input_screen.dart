@@ -27,8 +27,8 @@ class _SMSCodeInputScreenState extends State<SMSCodeInputScreen> {
     try {
       await Provider.of<Auth>(context).verify(_code);
       //https://zhuanlan.zhihu.com/p/56289929
-      Navigator.of(context)
-          .pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
+      Navigator.of(context).pushNamedAndRemoveUntil(
+          '/', (Route<dynamic> route) => false);
     } catch (error) {
       throw error;
     }
@@ -38,14 +38,14 @@ class _SMSCodeInputScreenState extends State<SMSCodeInputScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: ListView(
+        child: Column(
           children: <Widget>[
             FlatAppBar(
               title: Text(
                 '登入Cafeca',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    // fontSize: 24,
+                    fontSize: 24,
                     color: Theme.of(context).primaryColor),
               ),
             ),
@@ -60,9 +60,7 @@ class _SMSCodeInputScreenState extends State<SMSCodeInputScreen> {
                     child: Text(
                       '輸入驗證碼',
                       style: TextStyle(
-                        // fontSize: 20,
-                        color: Theme.of(context).primaryColor,
-                      ),
+                          fontSize: 20, color: Theme.of(context).primaryColor),
                     ),
                   ),
                   SizedBox(
@@ -72,7 +70,7 @@ class _SMSCodeInputScreenState extends State<SMSCodeInputScreen> {
                     child: Text(
                       widget.phone,
                       style: TextStyle(
-                        // fontSize: 20,
+                        fontSize: 20,
                         color: Theme.of(context).primaryColor,
                         fontWeight: FontWeight.bold,
                       ),
@@ -112,7 +110,7 @@ class _SMSCodeInputScreenState extends State<SMSCodeInputScreen> {
                       child: Text(
                         '繼續',
                         style: TextStyle(
-                          // fontSize: 20,
+                          fontSize: 20,
                           letterSpacing: 2,
                         ),
                       ),
@@ -130,7 +128,7 @@ class _SMSCodeInputScreenState extends State<SMSCodeInputScreen> {
                         '我沒有收到代碼',
                         style: TextStyle(
                             fontWeight: FontWeight.normal,
-                            // fontSize: 20,
+                            fontSize: 20,
                             color: Theme.of(context).primaryColor),
                       ),
                       onPressed: () {},

@@ -44,7 +44,9 @@ class GiftCardFront extends StatelessWidget {
               ),
             ),
             if (giftCard.isUsed)
-              Transform.scale(
+              Container(
+                color: Colors.black38,
+                child: Transform.scale(
                 alignment: Alignment.topLeft,
                 scale: 1.3,
                 child: Transform.translate(
@@ -56,7 +58,7 @@ class GiftCardFront extends StatelessWidget {
                     angle: -pi / 12,
                   ),
                 ),
-              ), //這需要跟backend拿
+              ),),//這需要跟backend拿
           ],
         ),
       ),

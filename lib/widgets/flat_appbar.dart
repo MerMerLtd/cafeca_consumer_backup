@@ -19,7 +19,7 @@ class FlatAppBar extends StatelessWidget {
                 child: Text(
                   '返回',
                   style: TextStyle(
-                      // fontSize: 18,
+                      fontSize: 24,
                       color: Theme.of(context).primaryColor,
                       fontWeight: FontWeight.normal),
                 ),

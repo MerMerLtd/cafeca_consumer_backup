@@ -45,7 +45,7 @@ class _GiftCardItemState extends State<GiftCardItem> {
           scale: 1,
           child: Transform.scale(
             scale: 1.2,
-            child: GiftCardBack(giftCard: giftCard),
+            child: GiftCardBack(giftCard: giftCard, cardKey: cardKey,),
           ),
         ),
       ),
