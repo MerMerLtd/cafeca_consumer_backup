@@ -1,0 +1,15 @@
+{
+    "success": true,
+    "data": [{
+        "SID": "49f3907175f54f5a571ba6",
+        "name": "Emily Cafe",
+        "image": "",
+        "formatted_address": "",
+        "geometry": {
+            "location": {
+                "lat": 40.714232,
+                "lng": -73.9612889
+            }
+        }
+    }]
+}

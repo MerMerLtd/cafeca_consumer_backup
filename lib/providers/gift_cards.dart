@@ -126,44 +126,5 @@ class GiftCards with ChangeNotifier {
 //     return _removeCard(id, 'give');
 //   }
 
-// // ============ Return Card ============
-// // Return a card if you do not want this
-//   Future<void> returnCard(String id) async {
-//     return _removeCard(id, 'return');
-//   }
 
-//   // ============ Take Card  ???? ============
-// // Take a card and write a receipt
-//   Future<void> addCard(GiftCard card) async {
-//     final url = 'https://api.cafeca.cc/api/v1/user/card?auth=$authToken';
-//     try {
-//       final response = await http.post(
-//         url,
-//         body: json.encode({
-//           'title': card.title,
-//           'description': card.description,
-//           'imageUrl': card.imageUrl,
-//           'price': card.price,
-//           // 'isUsed': card.isUsed,
-//           'availableShopsId': card.availableShopsId,
-//           'creatorId': userId,
-//         }),
-//       );
-//       final newCard = GiftCard(
-//         title: card.title,
-//         description: card.description,
-//         price: card.price,
-//         imageUrl: card.imageUrl,
-//         availableShopsId: card.availableShopsId,
-//         id: json.decode(response.body)['name'],
-//       );
-//       _items.add(newCard);
-//       notifyListeners();
-//     } catch (error) {
-//       print(error);
-//       throw error;
-//     }
-//   }
-  /// ====================================================
-  /// ====================================================
 }
