@@ -37,113 +37,120 @@ class _SMSCodeInputScreenState extends State<SMSCodeInputScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            FlatAppBar(
-              title: Text(
-                '登入Cafeca',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    // fontSize: 24,
-                    color: Theme.of(context).primaryColor),
+      resizeToAvoidBottomPadding: false,
+      body: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () {
+          FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: SafeArea(
+          child: Column(
+            children: <Widget>[
+              FlatAppBar(
+                title: Text(
+                  '登入Cafeca',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      // fontSize: 24,
+                      color: Theme.of(context).primaryColor),
+                ),
               ),
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    child: Text(
-                      '輸入驗證碼',
-                      style: TextStyle(
-                        // fontSize: 20,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Container(
-                    child: Text(
-                      widget.phone,
-                      style: TextStyle(
-                        // fontSize: 20,
-                        color: Theme.of(context).primaryColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  //========== validation code ===========
-                  VerifyCodeInputs(
-                    onCompleted: (String value) {
-                      if (value.length < 6) {
-                        setState(() {
-                          _isCompleted = false;
-                        });
-                      } else {
-                        setState(() {
-                          _isCompleted = true;
-                          _code = value;
-                        });
-                      }
-                    },
-                  ),
-                  //======================================
-                  SizedBox(
-                    height: 20,
-                  ),
-
-                  Container(
-                    width: double.infinity,
-                    child: RaisedButton(
-                      color: Theme.of(context).primaryColor,
-                      textColor: Colors.white,
-                      disabledColor: Colors.grey[200],
-                      elevation: 0,
-                      padding: EdgeInsets.symmetric(vertical: 15),
+              SizedBox(
+                height: 40,
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  children: <Widget>[
+                    Container(
                       child: Text(
-                        '繼續',
+                        '輸入驗證碼',
                         style: TextStyle(
                           // fontSize: 20,
-                          letterSpacing: 2,
+                          color: Theme.of(context).primaryColor,
                         ),
                       ),
-                      onPressed: _isCompleted ? _verrfyCode : null,
                     ),
-                  ),
-                  // SizedBox(
-                  //   height: 10,
-                  // ),
-                  Container(
-                    width: double.infinity,
-                    child: FlatButton(
-                      padding: EdgeInsets.symmetric(vertical: 15),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Container(
                       child: Text(
-                        '我沒有收到代碼',
+                        widget.phone,
                         style: TextStyle(
-                            fontWeight: FontWeight.normal,
-                            // fontSize: 20,
-                            color: Theme.of(context).primaryColor),
+                          // fontSize: 20,
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                      onPressed: () {},
                     ),
-                  ),
-                  // SizedBox(
-                  //   height: 20,
-                  // ),
-                  Terms(),
-                ],
+                    SizedBox(
+                      height: 30,
+                    ),
+                    //========== validation code ===========
+                    VerifyCodeInputs(
+                      onCompleted: (String value) {
+                        if (value.length < 6) {
+                          setState(() {
+                            _isCompleted = false;
+                          });
+                        } else {
+                          setState(() {
+                            _isCompleted = true;
+                            _code = value;
+                          });
+                        }
+                      },
+                    ),
+                    //======================================
+                    SizedBox(
+                      height: 20,
+                    ),
+
+                    Container(
+                      width: double.infinity,
+                      child: RaisedButton(
+                        color: Theme.of(context).primaryColor,
+                        textColor: Colors.white,
+                        disabledColor: Colors.grey[200],
+                        elevation: 0,
+                        padding: EdgeInsets.symmetric(vertical: 15),
+                        child: Text(
+                          '繼續',
+                          style: TextStyle(
+                            // fontSize: 20,
+                            letterSpacing: 2,
+                          ),
+                        ),
+                        onPressed: _isCompleted ? _verrfyCode : null,
+                      ),
+                    ),
+                    // SizedBox(
+                    //   height: 10,
+                    // ),
+                    Container(
+                      width: double.infinity,
+                      child: FlatButton(
+                        padding: EdgeInsets.symmetric(vertical: 15),
+                        child: Text(
+                          '我沒有收到代碼',
+                          style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              // fontSize: 20,
+                              color: Theme.of(context).primaryColor),
+                        ),
+                        onPressed: () {},
+                      ),
+                    ),
+                    // SizedBox(
+                    //   height: 20,
+                    // ),
+                    Terms(),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
